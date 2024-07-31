@@ -1,5 +1,7 @@
 ## K均值聚类
 
+### 算法过程
+
 &emsp; $K-means$ 是 聚类 $clustering$ 算法的一种，就是给你一坨东西，让你给他们分类：
 
 ![](./pic/KM1.png)
@@ -21,3 +23,17 @@
 ![](./pic/KM3.png)
 
 &emsp; 图画到这里我们就能明显的观察到两个聚类已经被划分好了。
+
+### 优化目标函数
+
+&emsp; 像前面介绍的线性回归、逻辑回归、$SVM$ 一样，这里的 $K-means$ 也有一个用于优化的函数：
+
+&emsp; $notation$：$c_i$ 表示点 $x_i$ 的类别，$\mu_k$ 表示聚类中心 $k$，$\mu_{c_i}$ 表示 $x_i$ 所属的那个聚类中心
+
+$$ J(c_1, \cdots, c_m, \mu_1, \cdots, \mu_K) = \frac{1}{m}\sum_{i = 1}^m |x_i - \mu_{c_i}|^2 $$
+
+&emsp; 我们要做的就是：
+
+$$ \min\limits_{c, \mu} J(c_1, \cdots, c_m, \mu_1, \cdots, \mu_K) $$
+
+&emsp; 看得出来，这就是要最小化所有点 $x_i$ 与其所属的聚类中心 $\mu_{x_i}$ 的距离的平方和。
