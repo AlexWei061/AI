@@ -1,3 +1,5 @@
+# coding = utf-8
+
 from mxnet import gluon
 from mxnet import ndarray as nd
 import matplotlib.pyplot as plt
@@ -100,7 +102,7 @@ for epoch in range(10):
 # print(w)
 # print(b)
 
-data, label = mnist_test[0 : 9]
+data, label = mnist_test[0 : 19]
 print("true labels")
 print(get_text_labels(label))
 predicted_labels = net(data).argmax(axis = 1)
