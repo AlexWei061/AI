@@ -97,12 +97,13 @@ def k_fold(k, X_train, y_train, num_epochs, learning_rate, weight_decay,
         print(f'折{i + 1}，训练log rmse{float(train_ls[-1]):f}, ' f'验证log rmse{float(valid_ls[-1]):f}')
     return train_l_sum / k, valid_l_sum / k                      # 返回 k 折训练效果的平均值
 
-k, num_epochs, lr, weight_decay, batch_size = 10, 1000, 5, 0, 64
+k, num_epochs, lr, weight_decay, batch_size = 10, 300, 3, 0, 64
 train_l, valid_l = k_fold(k, train_features, train_labels, num_epochs, lr, weight_decay, batch_size)
 print(f'{k}-折验证: 平均训练log rmse: {float(train_l):f}, ' f'平均验证log rmse: {float(valid_l):f}')
 
 
 
+"""开始训练"""
 def train_and_pred(train_features, test_features, train_labels, test_data, num_epochs, lr, weight_decay, batch_size):
     net = get_net()
     train_ls, _ = train(net, train_features, train_labels, None, None, num_epochs, lr, weight_decay, batch_size)
