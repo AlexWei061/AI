@@ -64,6 +64,7 @@ def train(net, train_features, train_labels, test_features, test_labels,num_epoc
         train_ls.append(log_rmse(net, train_features, train_labels))
         if test_labels is not None:
             test_ls.append(log_rmse(net, test_features, test_labels))
+    # 这里返回每个epoch训练完之后的accurcy list然后train_ls[-1]和test_lr[-1]就是最终训练出来的效果
     return train_ls, test_ls
 
 
