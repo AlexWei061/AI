@@ -10,7 +10,7 @@
 
 &emsp; 这里有一点 $pandas$ 的笔记qwq：[关于pandas](./note/关于pandas.md)
 
-&emsp; 首先把下下来的两个文件 $kaggle_house_pred_train.csv$ 和 $kaggle_house_pred_test.csv$ 保存在 $data$ 文件夹里，然后在python里读取他们就是这样：
+&emsp; 首先把下下来的两个文件 $kaggle\_house\_pred\_train.csv$ 和 $kaggle\_house\_pred\_test.csv$ 保存在 $data$ 文件夹里，然后在python里读取他们就是这样：
 
 ```python
 test_data  = pd.read_csv('./data/kaggle_house_pred_test.csv')
@@ -135,7 +135,7 @@ def train(net, train_features, train_labels, test_features, test_labels, num_epo
 
 &emsp; 听着这个名字很高大上，其实就是调参的意思...
 
-&emsp; 简单的来说就是把一些 $X, y$ 切片成 $k$ 份，然后把第 $i$ 份作为验证数据，而其他部分作为训练数据，我们首先写一个 $get\_data()$ 的函数用来得到 $k\;fold$ 的数据：
+&emsp; 简单的来说就是把一些 $X, y$ 切片成 $k$ 份，然后把第 $i$ 份作为验证数据，而其他部分作为训练数据，我们首先写一个 $get\_data()$ 的函数用来得到 $k\_fold$ 的数据：
 
 ```python
 def get_k_fold_data(k, i, X, y):                                 # k折 第i份为测试数据 其余为训练数据
@@ -155,7 +155,7 @@ def get_k_fold_data(k, i, X, y):                                 # k折 第i份�
     return X_train, y_train, X_valid, y_valid
 ```
 
-&emsp; 然后我们就可以写 $k \; fold()$ 了：
+&emsp; 然后我们就可以写 $k \_ fold()$ 了：
 
 ```python
 def k_fold(k, X_train, y_train, num_epochs, learning_rate, weight_decay, batch_size):
@@ -178,11 +178,11 @@ train_l, valid_l = k_fold(k, train_features, train_labels, num_epochs, lr, weigh
 print(f'{k}-折验证: 平均训练log rmse: {float(train_l):f}, ' f'平均验证log rmse: {float(valid_l):f}')
 ```
 
-&emsp; 然后我们就能用这一段代码愉快地开始调参了，改一改 $k, lr, wd$ 啥的看看能不能把 $log \; rmse$ 的均值降下去
+&emsp; 然后我们就能用这一段代码愉快地开始调参了，改一改 $k, lr, wd$ 啥的看看能不能把 $log \_ rmse$ 的均值降下去
 
 ## Step 4. 提交到Kaggle
 
-&emsp; 既然参数已经调好了，那么我们就可以不用管 $k\;fold$ 了，直接用所有的训练数据来对我们的模型进行训练。并把训练出来的结果保存在 $submission.csv$ 文件中，然后把这个文件交给 $kaggle$ 测评就好了：
+&emsp; 既然参数已经调好了，那么我们就可以不用管 $k\_fold$ 了，直接用所有的训练数据来对我们的模型进行训练。并把训练出来的结果保存在 $submission.csv$ 文件中，然后把这个文件交给 $kaggle$ 测评就好了：
 
 ```python
 def train_and_pred(train_features, test_features, train_labels, test_data, num_epochs, lr, weight_decay, batch_size):
