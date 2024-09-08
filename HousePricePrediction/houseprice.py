@@ -69,15 +69,15 @@ def train(net, train_features, train_labels, test_features, test_labels,num_epoc
 
 
 """K折交叉验证 其实就是调参[合十]"""
-def get_k_fold_data(k, i, X, y):                                 # k折 第i份为测试数据 其余为训练数据
+def get_k_fold_data(k, i, X, y):                                                               # k折 第i份为测试数据 其余为训练数据
     assert k > 1
-    fold_size = X.shape[0] // k                                  # 分成 k 份
+    fold_size = X.shape[0] // k                                                                # 分成 k 份
     X_train, y_train = None, None
     for j in range(k):
         idx = slice(j * fold_size, (j + 1) * fold_size)
         X_part, y_part = X[idx, :], y[idx]
         if j == i:
-            X_valid, y_valid = X_part, y_part                    # valid 是测试数据
+            X_valid, y_valid = X_part, y_part                                                  # valid 是测试数据
         elif X_train is None:
             X_train, y_train = X_part, y_part
         else:
@@ -108,8 +108,8 @@ def train_and_pred(train_features, test_features, train_labels, test_data, num_e
     net = get_net()
     train_ls, _ = train(net, train_features, train_labels, None, None, num_epochs, lr, weight_decay, batch_size)
     print(f'训练log rmse：{float(train_ls[-1]):f}')
-    preds = net(test_features).asnumpy()                                                 # 将网络应用于测试集。
-    test_data['SalePrice'] = pd.Series(preds.reshape(1, -1)[0])                          # 将其重新格式化以导出到Kaggle
+    preds = net(test_features).asnumpy()                                                       # 将网络应用于测试集。
+    test_data['SalePrice'] = pd.Series(preds.reshape(1, -1)[0])                                # 将其重新格式化以导出到Kaggle
     submission = pd.concat([test_data['Id'], test_data['SalePrice']], axis=1)
     submission.to_csv('submission.csv', index=False)
 
