@@ -1,3 +1,5 @@
+#coding = utf-8
+
 from mxnet import gluon
 from mxnet.gluon import nn
 from d2l import mxnet as d2l
