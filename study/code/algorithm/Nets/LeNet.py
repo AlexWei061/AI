@@ -16,7 +16,7 @@ with net.name_scope():
     net.add(nn.Dense(128, activation = 'relu'))
     net.add(nn.Dense(10))
 
-ctx = d2l.try_gpu()                                                                   # 试试gpu能不能跑 如果报错则返回cpu
+ctx = d2l.try_gpu()                                                                             # 试试gpu能不能跑 如果报错则返回cpu
 print("context :", ctx)
 net.initialize(ctx = ctx)
 print(net)
