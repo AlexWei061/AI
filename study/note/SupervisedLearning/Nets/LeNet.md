@@ -12,7 +12,8 @@
 
 &emsp; 这里我们先说只有一个通道的时候（也就是二维的时候）卷积网络的计算方法，我们来看这样一个图：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/fd2e9a8fab8a4e04b8feacd9e07df2f4.png#pic_center)
+![在这里插入图片描述](./pic/LN1.png)
+
 &emsp; 这里就很形象的展示了卷积的计算方法，其中 $3 \times 3$ 的矩阵我们叫做 **输入矩阵**，$2 \times 2$ 的蓝色矩阵叫做 **核函数**，最后得到的 $2 \times 2$ 的白色矩阵叫做 **输出矩阵**。
 
 &emsp; 其中，我们有：
@@ -62,7 +63,7 @@ output :
 
 &emsp; 然后对于channe 输入的channel > 1但输出的channel = 1的时候，我们还是举例说明计算方法：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/ebf3e4434e6543f49fa328dc50caa97d.png#pic_center)
+![在这里插入图片描述](./pic/LN2.png)
 
 
 &emsp; 这里我们的输入矩阵变成了红色的这两个，也就是一个 $2 \times 3 \times 3$  的张量，而我们的核函数变成了这两个蓝色的，也就是一个 $2 \times 2 \times 2$ 的张量。我们计算时，分别对对应的张量进行一次卷积，得到黄色的两个矩阵，然后再把这俩加起来就得到了输出矩阵。
@@ -107,7 +108,7 @@ output :
 
 &emsp; 还是老样子，举个例子：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/3496e52bf09644d68dc07ee2b9fc8bf3.png#pic_center)
+![在这里插入图片描述](./pic/LN3.png)
 
 &emsp; 这里的输入变成了 $3 \times 3 \times 3$ 的张量，而我们的核函数则是 $2 \times 3 \times 1 \times 1$ 的张量。这里，我们的计算方法就是用核函数的第一层跟输入做一次卷积，得到第一个矩阵，然后用核函数的第二层和输入再做一次卷积得到第二个矩阵，这两个矩阵就是我们的输出了。
 
@@ -191,7 +192,7 @@ print("input :", data, "\n\nweight :", w, "\n\noutput :", out)
 
 &emsp; 如上所述，在应用多层卷积时，我们常常丢失边缘像素。由于我们通常使用小卷积核，因此对于任何单个卷积，我们可能只会丢失几个像素。但随着我们应用许多连续卷积层，累积丢失的像素数就多了。解决这个问题的简单方法即为*填充*（padding）：在输入图像的边界填充元素（通常填充元素是$0$）。例如，:numref:`img_conv_pad`中，我们将$3 \times 3$输入填充到$5 \times 5$，那么它的输出就增加为$4 \times 4$。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$0\times0+0\times1+0\times2+0\times3=0$。
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/5063c078bc524e4697fee6291da373aa.png#pic_center)
+![在这里插入图片描述](./pic/LN4.png)
 
 
 &emsp; 代码是这样的：
@@ -230,7 +231,8 @@ output :
 
 &emsp; 我们看之前看到的都是每次把 $kernel$ 对准的一方移动一格所计算出来的输出，而 $stride$ 就是用来控制每次移动的步幅的：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/90a2cbefae7b4e3d9fcdb317810c1f8c.png#pic_center)
+![在这里插入图片描述](./pic/LN5.png)
+
 &emsp; 这里就是 $stride = (2, 2)$ 说明步幅是 $2$，那我们每次移动就走两格。所以红色和 $kernel$ 乘起来就是 $24$，蓝色和 $kernel$ 乘起来就是 $36$，以此类推。
 
 &emsp; 代码如下：
@@ -269,7 +271,7 @@ output :
 
 &emsp; 这里我们先说最大汇聚层：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/a4a6abdf94054ced87d7249872a4f252.png#pic_center)
+![在这里插入图片描述](./pic/LN6.png)
 
 &emsp; 这里其实就是：
 
