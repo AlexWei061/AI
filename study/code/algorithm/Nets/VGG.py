@@ -37,7 +37,7 @@ with net.name_scope():
 print(net)
 
 batch_size, num_epoch, lr = 128, 5, 0.01
-train_data, test_data = d2l.load_data_fashion_mnist(batch_size, resize = 96)                  # resize from 28 * 28 to 224 * 224
+train_data, test_data = d2l.load_data_fashion_mnist(batch_size, resize = 96)                  # resize from 28 * 28 to 96 * 96
 
 ctx = d2l.try_gpu()
 net.initialize(ctx = ctx, init = init.Xavier())
@@ -55,7 +55,10 @@ def evaluate_accuracy(data_itetator, net, context):
         acc += accuracy(output, label)
     return acc / len(data_itetator)
 
+import time
+
 for epoch in range(num_epoch):
+    start_time = time.time()
     train_loss, train_acc = 0., 0.
     for data, label in train_data:
         label = label.as_in_context(ctx)
@@ -68,5 +71,9 @@ for epoch in range(num_epoch):
         train_loss += nd.mean(loss).asscalar()
         train_acc += accuracy(out, label)
     test_acc = evaluate_accuracy(test_data, net, ctx)
-    print("Epoch %d. Loss : %f, Train acc : %f, Test acc : %f" % 
-                (epoch, train_loss / len(train_data), train_acc / len(train_data), test_acc))
+    end_time = time.time()
+    print("Epoch %d. Loss : %f, Train acc : %f, Test acc : %f, Used time : %f min" % 
+                (epoch, train_loss / len(train_data), train_acc / len(train_data), test_acc, (end_time - start_time) / 60))
+    if(epoch != num_epoch - 1):
+        time.sleep(300)
+        print("CPU has rested 5 min")
