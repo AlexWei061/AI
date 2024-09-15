@@ -119,5 +119,5 @@ for epoch in range(num_epoch):
     print("Epoch %d. Loss : %f, Train acc : %f, Test acc : %f, Used time : %f min" % 
                 (epoch, train_loss / len(train_data), train_acc / len(train_data), test_acc, (end_time - start_time) / 60))
     if(epoch != num_epoch - 1):
-        time.sleep(600)
-        print("CPU has rested 10 min")
+        time.sleep(60)
+        print("CPU has rested 1 min")
