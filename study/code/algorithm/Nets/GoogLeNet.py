@@ -80,7 +80,7 @@ print(net)
 # y = net(x)
 # print(y.shape)
 
-batch_size, num_epoch, lr = 128, 5, 0.01
+batch_size, num_epoch, lr = 128, 5, 0.1
 train_data, test_data = d2l.load_data_fashion_mnist(batch_size, resize = 96)                  # resize from 28 * 28 to 96 * 96
 
 ctx = d2l.try_gpu()
