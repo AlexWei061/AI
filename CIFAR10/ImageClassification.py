@@ -13,7 +13,7 @@ import time
 npx.set_np()
 
 is_save, is_load = True, True
-is_rest, rest_time = False, 4
+is_rest, rest_time = False, 1
 num_epoch, batch_size, lr, lr_decay, lr_period, wd = 10, 128, 7e-5, 0.5, 5, 1.5e-3
 
 transform_train = gluon.data.vision.transforms.Compose([
