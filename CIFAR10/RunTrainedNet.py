@@ -97,7 +97,7 @@ ctx = d2l.try_gpu()
 num_classes = 10
 net = resnet18(num_classes)
 if is_load:
-    net.load_parameters('resnet_params.params')
+    net.load_parameters('resnet_params.params', ctx = ctx)
 else:
     net.initialize(ctx = ctx, init = init.Xavier())
 net.hybridize()
