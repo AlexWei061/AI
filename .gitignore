@@ -1,0 +1,3 @@
+CIFAR10/data/*
+/CIFAR10/data/*.png
+d2l-zh/
