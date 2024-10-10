@@ -112,6 +112,8 @@ def accuracy(output, label):
 def evaluate_accuracy(data_itetator, net, context):
     acc = 0.
     for data, label in data_itetator:
+        data = data.as_in_context(context)
+        label = label.as_in_context(context)
         output = net(data)
         acc += accuracy(output, label)
     return acc / len(data_itetator)
