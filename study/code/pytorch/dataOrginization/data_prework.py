@@ -13,3 +13,19 @@ import pandas as pd
 
 data = pd.read_csv(data_file)
 print(data)
+print("")
+
+inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
+inputs = inputs.fillna(inputs.mean())
+print(inputs)
+# print(outputs)
+
+inputs = pd.get_dummies(inputs, dummy_na  = True)
+print(inputs)
+print("")
+
+import torch
+
+x, y = torch.tensor(inputs.values), torch.tensor(outputs.values)
+print(x)
+print(y)
